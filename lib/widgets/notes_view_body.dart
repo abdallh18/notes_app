@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:note_app/widgets/custom_note_item.dart';
 
 import 'custom_app_bar.dart';
+import 'notes_list_view.dart';
 
 class NotsViewBody extends StatelessWidget {
   const NotsViewBody({super.key});
@@ -18,7 +19,9 @@ class NotsViewBody extends StatelessWidget {
             height: 30,
           ),
           CustomAppBar(),
-          NodeItem(),
+          Expanded(
+            child: NotesListView(),
+          ),
         ],
       ),
     );
