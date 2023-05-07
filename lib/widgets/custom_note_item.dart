@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -33,7 +32,7 @@ class NodeItem extends StatelessWidget {
               child: Text(
                 'Build your career with abdallah',
                 style: TextStyle(
-                  color: Colors.black.withOpacity(.5),
+                  color: Colors.black.withOpacity(.4),
                   fontSize: 18,
                 ),
               ),
