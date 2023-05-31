@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:note_app/cubits/notes/notes_cubit.dart';
+import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/edit_note_view.dart';
 
 class NodeItem extends StatelessWidget {
-  const NodeItem({super.key});
-
+  const NodeItem({super.key, required this.note});
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -20,16 +23,16 @@ class NodeItem extends StatelessWidget {
           left: 16,
         ),
         decoration: BoxDecoration(
-          color: const Color(0xffFFCC80),
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              title: const Text(
-                'Flutter Tips',
-                style: TextStyle(
+              title: Text(
+                note.title,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 26,
                 ),
@@ -37,7 +40,7 @@ class NodeItem extends StatelessWidget {
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: Text(
-                  'Build your career with abdallah',
+                  note.subTitle,
                   style: TextStyle(
                     color: Colors.black.withOpacity(.4),
                     fontSize: 18,
@@ -45,7 +48,10 @@ class NodeItem extends StatelessWidget {
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  note.delete();
+                  BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                },
                 icon: const Icon(
                   FontAwesomeIcons.trash,
                   color: Colors.black,
@@ -56,7 +62,7 @@ class NodeItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 24, top: 16),
               child: Text(
-                'May 21 , 2022',
+                note.date,
                 style: TextStyle(
                   color: Colors.black.withOpacity(.4),
                   fontSize: 16,

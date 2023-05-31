@@ -4,7 +4,6 @@ import 'package:meta/meta.dart';
 
 import '../../models/note_model.dart';
 import '../../widgets/constants.dart';
-import '../abb_note_cubit/add_note_cubit.dart';
 
 part 'notes_state.dart';
 
@@ -12,7 +11,8 @@ class NotesCubit extends Cubit<NotesState> {
   NotesCubit() : super(NotesInitial());
   List<NoteModel>? notes;
   fetchAllNotes() {
-    var noteBox = Hive.box<NoteModel>(kNotesBox);
-    notes = noteBox.values.toList();
+    var notesBox = Hive.box<NoteModel>(kNotesBox);
+    notes = notesBox.values.toList();
+    emit(NotesSuccess());
   }
 }
