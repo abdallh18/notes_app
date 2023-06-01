@@ -1,10 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/cubits/notes/notes_cubit.dart';
+import 'package:note_app/widgets/colors_list_view.dart';
 import 'package:note_app/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../models/note_model.dart';
+import 'constants.dart';
 import 'custom_text_field.dart';
+import 'edit_note_colore_list_view.dart';
 
 class EditNotsViewBody extends StatefulWidget {
   const EditNotsViewBody({super.key, required this.note});
@@ -53,8 +56,12 @@ class _EditNotsViewBodyState extends State<EditNotsViewBody> {
               content = value;
             },
             hint: widget.note.subTitle,
-            maxLine: 6,
+            maxLine: 5,
           ),
+          const SizedBox(
+            height: 15,
+          ),
+          EditNoteColorsList(note: widget.note),
         ],
       ),
     );
